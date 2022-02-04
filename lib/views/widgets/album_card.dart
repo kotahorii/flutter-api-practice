@@ -36,7 +36,41 @@ class AlbumCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          
+          Align(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Text(
+                user,
+                style: const TextStyle(fontSize: 28),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            alignment: Alignment.center,
+          ),
+          Align(
+            alignment: const Alignment(0, 0.8),
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 15,
+                ),
+                const Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                  size: 20,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  likes.toString(),
+                  style: const TextStyle(fontSize: 18),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

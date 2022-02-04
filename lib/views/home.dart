@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Icon(Icons.album),
+            Icon(Icons.cake),
             SizedBox(
               width: 10,
             ),
@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: const AlbumCard(
-        user: 'takashi',
+        user: 'user1',
         likes: 5,
         imageUrl:
             "https://pixabay.com/get/g3cdf4a22195d2aded36821cc5e5cd68df27763264df6eb1cf1242a15edac48524d97e1e43a94f06c6c3328e4963c8e15d2490a28a69dac19fd328887e21cc1f5_1280.jpg",
