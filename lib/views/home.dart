@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api_practice2/models/album.api.dart';
+import 'package:flutter_api_practice2/models/album.dart';
 import 'package:flutter_api_practice2/views/widgets/album_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +11,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Album> _album = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getAlbum();
+  }
+
+  Future<void> getAlbum() async {
+    _album = await AlbumApi.getAlbum();
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +43,19 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: const AlbumCard(
-        user: 'user1',
-        likes: 5,
-        imageUrl:
-            "https://pixabay.com/get/g3cdf4a22195d2aded36821cc5e5cd68df27763264df6eb1cf1242a15edac48524d97e1e43a94f06c6c3328e4963c8e15d2490a28a69dac19fd328887e21cc1f5_1280.jpg",
-      ),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                return AlbumCard(
+                    imageUrl: _album[index].imageUrl,
+                    likes: _album[index].likes,
+                    user: _album[index].user);
+              },
+              itemCount: _album.length,
+            ),
     );
   }
 }
